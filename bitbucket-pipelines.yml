@@ -11,7 +11,7 @@ pipelines:
         caches:
           - composer
         script:
-          - apt-get update && apt-get install -y unzip mcrypt zip
+          - apt-get update && apt-get install -y mcrypt zip unzip php7.1-zip
           - docker-php-ext-install mcrypt && docker-php-ext-install pdo_mysql && docker-php-ext-install zip
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
