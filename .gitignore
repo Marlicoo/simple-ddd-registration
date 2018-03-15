@@ -3,3 +3,6 @@ var/log/
 var/cache/
 vendor/
 .env
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###
