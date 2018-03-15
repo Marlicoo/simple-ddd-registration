@@ -16,4 +16,4 @@ pipelines:
           - docker-php-ext-install pdo_mysql && docker-php-ext-install zip
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
-          - ./vendor/bin/simple-phpunit
+          #- ./vendor/bin/simple-phpunit
