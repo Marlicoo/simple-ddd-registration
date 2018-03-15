@@ -3,7 +3,7 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: php:7.1.3
+image: php:7.2.1
 
 pipelines:
   default:
@@ -11,8 +11,9 @@ pipelines:
         caches:
           - composer
         script:
-          - apt-get update && apt-get install -y mcrypt zip unzip php-pclzip
-          - docker-php-ext-install mcrypt && docker-php-ext-install pdo_mysql && docker-php-ext-install zip
+          - apt-get update && apt-get install -y unzip
+          - apt-get update && apt-get install -qy git curl libmcrypt-dev mysql-client libzip-dev zip
+          - docker-php-ext-install pdo_mysql && docker-php-ext-install zip
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - ./vendor/bin/simple-phpunit
