@@ -1,4 +1,5 @@
 .idea/
-var/
+var/log/
+var/cache/
 vendor/
 .env
