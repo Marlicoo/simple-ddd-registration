@@ -40,3 +40,13 @@ services:
       depends_on:
        - mysql
 
+    elasticsearch:
+      image: elasticsearch:latest
+      volumes:
+        - ./elasticsearch/data:/usr/share/elasticsearch/data
+        - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+      expose:
+        - "9200"
+      ports:
+        - "9200:9200"
+

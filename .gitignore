@@ -3,6 +3,7 @@ var/log/
 var/cache/
 vendor/
 .env
+elasticsearch
 ###> phpunit/phpunit ###
 /phpunit.xml
 ###< phpunit/phpunit ###
