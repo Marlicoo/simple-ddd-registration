@@ -1,7 +1,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'pl'
 
 services:
     # default configuration for services in *this* file
@@ -20,9 +20,13 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller'
+    App\UI\Controller\:
+        resource: '../src/UI/Controller'
         tags: ['controller.service_arguments']
+
+    App\Application\User\RegisterValidator:
+        arguments:
+            - ['@App\Application\User\Validation\Rule\EmailRegistrationRule', '@App\Application\User\Validation\Rule\PasswordRegistrationRule']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
