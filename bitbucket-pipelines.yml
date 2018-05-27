@@ -16,4 +16,10 @@ pipelines:
           - docker-php-ext-install pdo_mysql && docker-php-ext-install zip
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
+          - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-155.0.0-linux-x86_64.tar.gz
+          - tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/
+          - /tmp/google-cloud-sdk/install.sh -q
+          - source /tmp/google-cloud-sdk/path.bash.inc
+          - gcloud -v
           #- ./vendor/bin/simple-phpunit
+          # yarn add --dev vue vue-loader vue-template-compiler
