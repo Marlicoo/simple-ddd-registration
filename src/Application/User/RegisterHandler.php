@@ -3,24 +3,41 @@
 namespace App\Application\User;
 
 
-use App\Domain\User\Email;
-use App\Domain\User\Entity\User;
-use App\Domain\User\Password;
-use App\Domain\User\Repository\UserRepository;
+use App\Domain\User\Repository\UserRepositoryInterface;
+use App\Domain\User\Service\RegisterUserService;
 
 class RegisterHandler
 {
+    /** @var  RegisterUserService */
+    private $registerService;
+
+    /** @var  UserRepositoryInterface */
+    private $userRepository;
+
+    /**
+     * ValidationMiddleware constructor.
+     * @param RegisterUserService $registerService
+     * @param UserRepositoryInterface $userRepository
+     */
+    public function __construct(RegisterUserService $registerService, UserRepositoryInterface $userRepository)
+    {
+        $this->registerService = $registerService;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * @param RegisterCommand $command
-     * @throws \App\Domain\User\Exception\InvalidUserIdentityException
-     * @throws \App\Domain\User\Exception\InvalidRepeatedPasswordException
-     * @throws \App\Domain\User\Exception\InvalidPasswordLengthException
      */
     public function handle(RegisterCommand $command): void
     {
+        $user = $this->registerService->register(
+            $command->getEmail(),
+            $command->getPassword(),
+            $command->getUsername()
+        );
 
-        $userRepo = new UserRepository();
-        $user = new User($userRepo->nextIdentity(), new Email($command->getEmail()), new Password($command->getPassword(), 'ble'));
-        var_dump($user);
+        $this->userRepository->add($user);
+
     }
 }
+
