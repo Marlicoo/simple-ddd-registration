@@ -23,5 +23,5 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/Domain/User/Entity'
-                prefix: 'App\DomainModel\User\Entity'
+                prefix: 'App\Domain\User\Entity'
                 alias: App

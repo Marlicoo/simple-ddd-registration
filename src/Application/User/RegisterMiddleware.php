@@ -3,41 +3,43 @@
 namespace App\Application\User;
 
 
-use App\Application\Command;
-use App\Application\CommandValidator;
-use App\Application\User\Exception\ValidationException;
+use App\Application\User\Exception\RegisterValidationException;
 use League\Tactician\Middleware;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegisterMiddleware implements Middleware
 {
-    /** @var  CommandValidator */
+    /** @var ValidatorInterface */
     private $validator;
 
     /**
      * ValidationMiddleware constructor.
-     * @param CommandValidator $validator
+     * @param ValidatorInterface $validator
      */
-    public function __construct(CommandValidator $validator)
+    public function __construct(ValidatorInterface $validator)
     {
         $this->validator = $validator;
     }
 
-
     /**
      * @param object $command
      * @param callable $next
-     * @return mixed|void
+     * @return mixed
+     * @throws RegisterValidationException
      */
     public function execute($command, callable $next)
     {
-        if ($command instanceof Command) {
-           $errors =  $this->validator->validate($command, null);
+        if ($command instanceof RegisterCommand) {
 
-           if(!empty($errors)){
-               throw new ValidationException('message');
-           }
+            /** @var ConstraintViolationListInterface $errors */
+            $errors = $this->validator->validate($command);
+
+            if (\count($errors)) {
+                throw new RegisterValidationException($errors);
+            }
         }
+
+        return $next($command);
     }
-
 }
-
