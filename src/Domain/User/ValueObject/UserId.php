@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\User;
+namespace App\Domain\User\ValueObject;
 
 
 use App\Domain\User\Exception\InvalidUserIdentityException;
@@ -27,7 +27,7 @@ class UserId
             Assertion::uuid($id);
         }catch(AssertionFailedException $e){
 
-            throw new InvalidUserIdentityException('message');
+            throw InvalidUserIdentityException::forId($id);
         }
 
         $this->id = $id;

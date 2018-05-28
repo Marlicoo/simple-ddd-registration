@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Domain\User;
+namespace App\Domain\User\ValueObject;
 
 
-use App\Domain\User\Exception\InvalidUserIdentityException;
-use Assert\Assertion;
-use Assert\AssertionFailedException;
+use App\Domain\User\Exception\Registration\InvalidEmailDomainException;
 
 class Email
 {
+    public static $domains = ['noname.pl', 'bartech.com'];
+
     /** @var string */
     private $value;
 
     /**
      *
      * @param string $value
-     * @throws InvalidUserIdentityException
+     * @throws InvalidEmailDomainException
      */
     public function __construct($value)
     {
-        try{
-            Assertion::email($value);
-        }catch(AssertionFailedException $e){
+        $domain = substr($value, strrpos($value, '@') + 1);
 
-            throw new InvalidUserIdentityException('message');
+        if(!\in_array($domain, self::$domains, true)){
+
+            throw InvalidEmailDomainException::forDomain($value, implode(self::$domains, ', '));
         }
 
         $this->value = $value;
@@ -38,5 +38,4 @@ class Email
     {
         return $this->value;
     }
-
 }
