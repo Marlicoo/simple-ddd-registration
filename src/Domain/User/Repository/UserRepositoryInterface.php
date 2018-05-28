@@ -4,6 +4,7 @@ namespace App\Domain\User\Repository;
 
 
 use App\Domain\User\Entity\User;
+use App\Domain\User\ValueObject\Email;
 use App\Domain\User\ValueObject\UserId;
 
 interface UserRepositoryInterface
@@ -31,4 +32,10 @@ interface UserRepositoryInterface
      * @return UserId
      */
     public function nextIdentity(): UserId;
+
+    /**
+     * @param Email $email
+     * @return bool
+     */
+    public function emailUnique(Email $email):bool;
 }
