@@ -24,9 +24,13 @@ services:
         resource: '../src/UI/Controller'
         tags: ['controller.service_arguments']
 
-    App\Application\User\RegisterValidator:
-        arguments:
-            - ['@App\Application\User\Validation\Rule\EmailRegistrationRule', '@App\Application\User\Validation\Rule\PasswordRegistrationRule']
+    App\Application\User\RegisterHandler:
+        tags:
+            - { name: tactician.handler, command: App\Application\User\RegisterCommand }
+
+    App\Application\User\Listener\ValidationFailure:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
