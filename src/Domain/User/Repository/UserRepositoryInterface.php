@@ -4,7 +4,7 @@ namespace App\Domain\User\Repository;
 
 
 use App\Domain\User\Entity\User;
-use App\Domain\User\UserId;
+use App\Domain\User\ValueObject\UserId;
 
 interface UserRepositoryInterface
 {
@@ -13,14 +13,14 @@ interface UserRepositoryInterface
      *
      * @return User
      */
-    public function ofId(UserId $userId);
+    public function byId(UserId $userId): User;
 
     /**
      * @param string $email
      *
      * @return User
      */
-    public function ofEmail($email);
+    public function byEmail($email): User;
 
     /**
      * @param User $user
@@ -30,5 +30,5 @@ interface UserRepositoryInterface
     /**
      * @return UserId
      */
-    public function nextIdentity();
+    public function nextIdentity(): UserId;
 }
