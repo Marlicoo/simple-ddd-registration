@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Application\User\Exception;
+namespace App\Application\Exception\UserRegister;
 
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Throwable;
 
-class RegisterValidationException extends \InvalidArgumentException
+class ValidationException extends \InvalidArgumentException
 {
     /** @var  ConstraintViolationListInterface */
     private $errors;

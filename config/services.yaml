@@ -24,13 +24,13 @@ services:
         resource: '../src/UI/Controller'
         tags: ['controller.service_arguments']
 
-    App\Application\User\RegisterHandler:
+    # Command Handlers
+    App\Application\UseCase\UserRegister\RegisterHandler:
         tags:
-            - { name: tactician.handler, command: App\Application\User\RegisterCommand }
+            - { name: tactician.handler, command: App\Application\UseCase\UserRegister\RegisterCommand }
 
-    App\Application\User\Listener\ValidationFailure:
+
+    # Application listeners
+    App\Application\Listener\UserRegister\ValidationFailure:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
