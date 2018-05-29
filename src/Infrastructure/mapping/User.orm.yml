@@ -1,0 +1,22 @@
+App\Domain\User\Entity\User:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\UserRepository
+  table: user
+  id:
+    userId:
+      type: guid
+
+  fields:
+    username:
+      type: string
+      length: 50
+      column: username
+    email:
+      type: string
+      length: 32
+      column: email
+      unique: true
+
+  indexes:
+    email_idx:
+      columns: email
