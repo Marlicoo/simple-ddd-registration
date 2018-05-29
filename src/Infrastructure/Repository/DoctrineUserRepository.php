@@ -48,7 +48,7 @@ class DoctrineUserRepository implements UserRepositoryInterface
 
     public function emailUnique(Email $email): bool
     {
-        return $this->entityManger->find(User::class, $email) ? true : false;
+        return null === $this->entityManger->find(User::class, $email);
     }
 
 }
