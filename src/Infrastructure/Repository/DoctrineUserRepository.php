@@ -46,9 +46,19 @@ class DoctrineUserRepository implements UserRepositoryInterface
         return new UserId();
     }
 
+    /**
+     * @param Email $email
+     * @return bool
+     */
     public function emailUnique(Email $email): bool
     {
-        return null === $this->entityManger->find(User::class, $email);
+        return null === $this->entityManger->createQueryBuilder()
+            ->select('user')
+            ->from(User::class, 'user')
+            ->where('user.email  = :email')
+            ->setParameter(':email', $email)
+            ->getQuery()
+            ->getResult();
     }
 
 }
