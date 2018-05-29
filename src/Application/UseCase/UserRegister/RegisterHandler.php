@@ -3,6 +3,8 @@
 namespace App\Application\UseCase\UserRegister;
 
 
+use App\Domain\User\Exception\Registration\EmailNotUniqueException;
+use App\Domain\User\Exception\Registration\InvalidEmailDomainException;
 use App\Domain\User\Repository\UserRepositoryInterface;
 use App\Domain\User\Service\RegisterUserService;
 
@@ -27,6 +29,8 @@ class RegisterHandler
 
     /**
      * @param RegisterCommand $command
+     * @throws InvalidEmailDomainException
+     * @throws EmailNotUniqueException
      */
     public function handle(RegisterCommand $command): void
     {
