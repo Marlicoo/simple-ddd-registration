@@ -4,8 +4,8 @@ namespace App\Domain\User\Service;
 
 
 use App\Domain\User\Entity\User;
-use App\Domain\User\Exception\EmailNotUniqueException;
-use App\Domain\User\Exception\InvalidEmailDomainException;
+use App\Domain\User\Exception\Registration\EmailNotUniqueException;
+use App\Domain\User\Exception\Registration\InvalidEmailDomainException;
 use App\Domain\User\Repository\UserRepositoryInterface;
 use App\Domain\User\ValueObject\Email;
 use App\Domain\User\ValueObject\HashedPassword;
