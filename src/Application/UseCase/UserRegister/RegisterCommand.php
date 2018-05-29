@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\User;
+namespace App\Application\UseCase\UserRegister;
 
 
 use App\Application\Command;
@@ -85,6 +85,7 @@ class RegisterCommand implements Command
 
     /**
      * @return array
+     * #TODO refactor getData
      */
     public function getData(): array
     {

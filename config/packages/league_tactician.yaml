@@ -12,6 +12,6 @@ tactician:
 #                - tactician.middleware.locking
 # Doctrine transactional middleware, requires additional package - https://github.com/thephpleague/tactician-doctrine
 #                - tactician.middleware.doctrine
-                - 'App\Application\User\RegisterMiddleware'
+                - 'App\Application\UseCase\UserRegister\RegisterMiddleware'
                 - tactician.middleware.command_handler
 

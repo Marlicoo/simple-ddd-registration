@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Application\User;
+namespace App\Application\UseCase\UserRegister;
 
 
-use App\Application\User\Exception\RegisterValidationException;
+use App\Application\Exception\UserRegister\ValidationException;
 use League\Tactician\Middleware;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -26,7 +26,7 @@ class RegisterMiddleware implements Middleware
      * @param object $command
      * @param callable $next
      * @return mixed
-     * @throws RegisterValidationException
+     * @throws ValidationException
      */
     public function execute($command, callable $next)
     {
@@ -36,7 +36,7 @@ class RegisterMiddleware implements Middleware
             $errors = $this->validator->validate($command);
 
             if (\count($errors)) {
-                throw new RegisterValidationException($errors);
+                throw new ValidationException($errors);
             }
         }
 

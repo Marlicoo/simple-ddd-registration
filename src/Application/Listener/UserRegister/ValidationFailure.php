@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Application\User\Listener;
+namespace App\Application\Listener\UserRegister;
 
 
-use App\Application\User\Exception\RegisterValidationException;
+use App\Application\Exception\UserRegister\ValidationException;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
@@ -29,7 +29,7 @@ class ValidationFailure
     {
         $exception = $event->getException();
 
-        if (!$exception instanceof RegisterValidationException) {
+        if (!$exception instanceof ValidationException) {
             return;
         }
 

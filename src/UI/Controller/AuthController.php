@@ -2,7 +2,7 @@
 
 namespace App\UI\Controller;
 
-use App\Application\User\RegisterCommand;
+use App\Application\UseCase\UserRegister\RegisterCommand;
 use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
