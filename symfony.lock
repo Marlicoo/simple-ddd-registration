@@ -137,6 +137,9 @@
     "myclabs/deep-copy": {
         "version": "1.7.0"
     },
+    "nikic/php-parser": {
+        "version": "v4.0.1"
+    },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
     },
@@ -401,6 +404,9 @@
             "ref": "41416370e732d1c8e7a0953a5ce815b641cfba0f"
         }
     },
+    "symfony/polyfill-ctype": {
+        "version": "v1.8.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.7.0"
     },
@@ -498,15 +504,6 @@
             "branch": "master",
             "version": "3.3",
             "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
-        }
-    },
-    "symfony/webpack-encore-pack": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "a2f276eff6e95ca94be135d2d3e5c1247c6f8807"
         }
     },
     "symfony/yaml": {

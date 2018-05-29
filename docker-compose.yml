@@ -43,8 +43,8 @@ services:
     elasticsearch:
       image: elasticsearch:latest
       volumes:
-        - ./elasticsearch/data:/usr/share/elasticsearch/data
-        - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+        - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
+        - ./docker/elasticsearch/logs:/usr/share/elasticsearch/logs
       expose:
         - "9200"
       ports:
