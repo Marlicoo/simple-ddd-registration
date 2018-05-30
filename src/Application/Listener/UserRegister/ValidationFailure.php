@@ -7,6 +7,7 @@ use App\Application\Exception\UserRegister\ValidationException;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ValidationFailure
 {
@@ -33,9 +34,10 @@ class ValidationFailure
             return;
         }
 
-        $responseData = $this->serializer->serialize($exception->getErrors(), 'json');
+        $responseData = ['success' => false, 'errors' => $exception->getErrors()];
+        $jsonResponseData = $this->serializer->serialize($responseData, 'json');
 
-        $event->setResponse(new JsonResponse($responseData, JsonResponse::HTTP_UNPROCESSABLE_ENTITY, [], true));
+        $event->setResponse(new JsonResponse($jsonResponseData, JsonResponse::HTTP_UNPROCESSABLE_ENTITY, [], true));
     }
 }
 
