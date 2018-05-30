@@ -52,13 +52,13 @@ class DoctrineUserRepository implements UserRepositoryInterface
      */
     public function emailUnique(Email $email): bool
     {
-        return null === $this->entityManger->createQueryBuilder()
+        return empty($this->entityManger->createQueryBuilder()
             ->select('user')
             ->from(User::class, 'user')
             ->where('user.email  = :email')
             ->setParameter(':email', $email)
             ->getQuery()
-            ->getResult();
+            ->getResult());
     }
 
 }
