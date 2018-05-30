@@ -20,11 +20,23 @@ class AuthController extends Controller
      *
      * @SWG\Response(
      *     response=201,
-     *     description="Returns the register success message",
+     *     description="Returns the register success set to true",
+     *     @SWG\Schema(
+     *        type="object",
+     *        example={"success":true}
+     *     )
      * )
      * @SWG\Response(
      *     response=422,
      *     description="Returns when params validation failure",
+     *
+     *     @SWG\Schema(
+     *        type="object",
+     *        example={ "success": false,
+     *                  "errors": {
+     *                     "property_path": "email",
+     *                     "message": "No email entered"}
+     *                 })
      * )
      * @SWG\Parameter(
      *     name="register_user",
@@ -32,7 +44,6 @@ class AuthController extends Controller
      *     @Model(type=RegisterCommand::class)
      * )
      * @SWG\Tag(name="/api/v1/register")
-
      * @param CommandBus $commandBus
      * @param Request $request
      * @return JsonResponse
@@ -47,6 +58,6 @@ class AuthController extends Controller
         );
         $commandBus->handle($command);
 
-        return new JsonResponse('register success', JsonResponse::HTTP_CREATED);
+        return new JsonResponse(['success' => true], JsonResponse::HTTP_CREATED);
     }
 }
